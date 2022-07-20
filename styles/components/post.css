@@ -1,0 +1,3 @@
+.post-page .author-bio p {
+	@apply text-xs font-medium text-gray-500;
+}

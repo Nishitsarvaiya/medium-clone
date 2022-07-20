@@ -16,11 +16,7 @@ function Post({ post }: Props) {
 		return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 	};
 	return (
-		<div>
-			{/* <Header /> */}
-			{/* <div className='w-full h-80 overflow-hidden'>
-				<img className='w-full h-full object-cover object-center' src={urlFor(post.mainImage).url()!} alt='' />
-			</div> */}
+		<div className='post-page'>
 			<div className='min-h-screen max-w-[1500px] mx-auto'>
 				<div className='w-full h-full flex justify-between'>
 					<div className='border-r border-[rgb(230, 230, 230)] min-h-screen w-20 relative hidden lg:block'>
@@ -28,12 +24,19 @@ function Post({ post }: Props) {
 							<div className='h-screen sticky top-0'>
 								<div className='py-10 flex justify-center'>
 									<Link href='/'>
-										<svg viewBox='0 0 1043.63 592.71' className='h-6 fill-black cursor-pointer'>
-											<g data-name='Layer 2'>
-												<g data-name='Layer 1'>
-													<path d='M588.67 296.36c0 163.67-131.78 296.35-294.33 296.35S0 460 0 296.36 131.78 0 294.34 0s294.33 132.69 294.33 296.36M911.56 296.36c0 154.06-65.89 279-147.17 279s-147.17-124.94-147.17-279 65.88-279 147.16-279 147.17 124.9 147.17 279M1043.63 296.36c0 138-23.17 249.94-51.76 249.94s-51.75-111.91-51.75-249.94 23.17-249.94 51.75-249.94 51.76 111.9 51.76 249.94'></path>
-												</g>
-											</g>
+										<svg
+											xmlns='http://www.w3.org/2000/svg'
+											width='24'
+											height='24'
+											viewBox='0 0 24 24'
+											className='cursor-pointer'
+											fill='none'
+											stroke='#2d2d2d'
+											strokeWidth='2'
+											strokeLinecap='round'
+											strokeLinejoin='round'>
+											<line x1='19' y1='12' x2='5' y2='12'></line>
+											<polyline points='12 19 5 12 12 5'></polyline>
 										</svg>
 									</Link>
 								</div>
@@ -41,17 +44,33 @@ function Post({ post }: Props) {
 						</nav>
 					</div>
 					<main className='flex-1'>
-						<div className='mb-10'>
+						<div className='pb-20 border-b border-[rgb(230, 230, 230)]'>
 							<div className='flex justify-center'>
 								<div className='max-w-[692px] w-full min-w-0 mx-6 lg:mx-8'>
 									<article>
 										<header className='mt-14 mb-20'>
-											<div className='flex'>
+											<div className='flex items-center'>
+												<Link href='/'>
+													<svg
+														xmlns='http://www.w3.org/2000/svg'
+														width='24'
+														height='24'
+														viewBox='0 0 24 24'
+														className='cursor-pointer mr-4 lg:hidden'
+														fill='none'
+														stroke='#2d2d2d'
+														strokeWidth='2'
+														strokeLinecap='round'
+														strokeLinejoin='round'>
+														<line x1='19' y1='12' x2='5' y2='12'></line>
+														<polyline points='12 19 5 12 12 5'></polyline>
+													</svg>
+												</Link>
 												<div className='h-12 w-12 mr-4 rounded-full overflow-hidden'>
 													<img src={urlFor(post.author.image).url()!} alt='' />
 												</div>
 												<div>
-													<div className='text-md font-semibold text-gray-900 mb-2'>
+													<div className='text-base font-semibold text-gray-900 mb-2'>
 														{post.author.name}
 													</div>
 													<div className='flex gap-2 items-center'>
@@ -67,8 +86,10 @@ function Post({ post }: Props) {
 											</div>
 										</header>
 										<section className='mt-6'>
-											<h1 className='text-6xl font-bold text-gray-900 mb-4'>{post.title}</h1>
-											<h3 className='text-xl font-medium text-gray-600 mb-8'>
+											<h1 className='text-4xl lg:text-6xl font-bold text-gray-900 mb-4'>
+												{post.title}
+											</h1>
+											<h3 className='text-lg lg:text-xl font-medium text-gray-600 mb-8'>
 												{post.description}
 											</h3>
 											<div className='w-full h-[400px] overflow-hidden mb-10'>
@@ -86,37 +107,43 @@ function Post({ post }: Props) {
 													serializers={{
 														h1: (props: any) => (
 															<h1
-																className='text-4xl font-bold tracking-wide mt-10 mb-5'
+																className='text-3xl lg:text-4xl font-bold tracking-wide mt-10 mb-5'
 																{...props}
 															/>
 														),
 														h2: (props: any) => (
 															<h2
-																className='text-3xl font-bold tracking-wide mt-10 mb-5'
+																className='text-2xl lg:text-3xl font-bold tracking-wide mt-10 mb-5'
 																{...props}
 															/>
 														),
 														h3: (props: any) => (
-															<h3 className='text-2xl font-bold mt-10 mb-5' {...props} />
+															<h3
+																className='text-xl lg:text-2xl font-bold mt-10 mb-5'
+																{...props}
+															/>
 														),
 														h4: (props: any) => (
-															<h4 className='text-xl font-bold mt-10 mb-5' {...props} />
+															<h4
+																className='text-lg lg:text-xl font-bold mt-10 mb-5'
+																{...props}
+															/>
 														),
 														ul: ({ children }: any) => (
 															<ul className='list-disc my-5 ml-10'>{children}</ul>
 														),
 														li: ({ children }: any) => (
-															<li className='text-md font-medium text-gray-600 mb-2'>
+															<li className='text-base font-medium text-gray-600 mb-2'>
 																{children}
 															</li>
 														),
 														link: ({ children }: any) => (
-															<a className='text-md font-medium text-blue-600 underline underline-offset-1 cursor-pointer mb-2'>
+															<a className='text-base font-medium text-blue-600 underline underline-offset-1 cursor-pointer mb-2'>
 																{children}
 															</a>
 														),
 														blockquote: ({ children }: any) => (
-															<blockquote className='text-2xl text-center font-semibold text-gray-700 my-20 py-10 border-y border-gray-900/10'>
+															<blockquote className='text-xl lg:text-2xl text-center font-semibold text-gray-700 my-20 py-10 border-y border-gray-900/10'>
 																{children}
 															</blockquote>
 														),
@@ -128,10 +155,68 @@ function Post({ post }: Props) {
 								</div>
 							</div>
 						</div>
+						<div className='py-10 mb-20 border-b border-[rgb(230, 230, 230)]'>
+							<div className='flex justify-center'>
+								<div className='max-w-[692px] w-full min-w-0 mx-6 lg:mx-8'>
+									<h4 className='text-slate-500 mb-2'>Enjoyed this article?</h4>
+									<h2 className='text-3xl font-bold text-gray-700 mb-4'>What are your thoughts?</h2>
+									<div className='border-b border-[rgb(230, 230, 230)] mb-5'></div>
+									<form id='commentForm'>
+										<div className='flex flex-col gap-5'>
+											<div className='border rounded-sm border-gray-300 p-2 group'>
+												<label htmlFor='name' className='flex flex-col'>
+													<span className='text-[13px] text-gray-500'>Tell us your Name</span>
+													<input
+														type='text'
+														placeholder='Steve Jobs'
+														id='name'
+														name='name'
+														className='text-base text-gray-900 font-medium outline-none focus:outline-none placeholder:text-gray-400 placeholder:font-normal'
+													/>
+												</label>
+											</div>
+											<div className='border rounded-sm border-gray-300 p-2 group'>
+												<label htmlFor='email' className='flex flex-col'>
+													<span className='text-[13px] text-gray-500'>
+														What's your Email?
+													</span>
+													<input
+														type='text'
+														placeholder='stevejobs@apple.com'
+														id='email'
+														name='email'
+														className='text-base text-gray-900 font-medium outline-none focus:outline-none placeholder:text-gray-400 placeholder:font-normal'
+													/>
+												</label>
+											</div>
+											<div className='border rounded-sm border-gray-300 p-2 group'>
+												<label htmlFor='comment' className='flex flex-col'>
+													<span className='text-[13px] text-gray-500'>
+														Tell us your thoughts here!
+													</span>
+													<textarea
+														placeholder='I love this article!'
+														id='comment'
+														name='comment'
+														rows={4}
+														className='text-base text-gray-900 font-medium outline-none focus:outline-none placeholder:text-gray-400 placeholder:font-normal resize-none'
+													/>
+												</label>
+											</div>
+											<button
+												type='submit'
+												className='self-end bg-slate-700 text-white font-medium px-8 py-2 rounded-sm hover:bg-slate-800 transition duration-200'>
+												Respond
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 					</main>
 					<div className='w-96 min-h-screen px-8 border-l border-[rgb(230, 230, 230)] hidden lg:block'>
-						<div className='h-full w-full relative'>
-							<div className='fixed top-0'>
+						<div className='h-full w-full relative inline-block'>
+							<div className='sticky top-0'>
 								<div className='min-h-screen'>
 									<div className='pt-40'>
 										<div className='h-20 w-20 rounded-full overflow-hidden mb-4'>
@@ -144,7 +229,7 @@ function Post({ post }: Props) {
 										<div className='text-md font-semibold text-gray-900 mb-2'>
 											{post.author.name}
 										</div>
-										<div className='text-sm font-medium text-gray-500'>
+										<div className='author-bio'>
 											<PortableText
 												dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
 												projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
